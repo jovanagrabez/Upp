@@ -20,6 +20,7 @@ public class RecezentService  implements JavaDelegate {
         List<FormSubmissionDto> registration = (List<FormSubmissionDto>)execution.getVariable("registration");
         String username = registration.get(6).getFieldValue();
 
+        // da li radii commit
         User u = this.userRepository.findUserByUsername(username);
 
         u.setRecenzent(true);
