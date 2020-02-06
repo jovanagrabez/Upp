@@ -1,0 +1,19 @@
+
+<h3>Recenzenti</h3>
+<br><br>
+<div *ngFor="let task of tasks">
+  <div>
+    <div class="list-group-item list-group-item-action flex-column align-items-start">
+      <!--      <span class="mb-1 pull-right">-->
+      <!--        <a ><img src="https://img.icons8.com/carbon-copy/100/000000/delete.png" width="30" height="30" alt=""></a>-->
+      <!--      </span>-->
+      <div class="d-flex w-80 justify-content-between">
+        <h5 class="mb-2">{{task['username']}}</h5>
+
+      </div>
+
+      <button (click)="activateRecenzent(task['id'])">Potvrdi</button>
+      <button (click)="noActivate(task['id'])">Odbij</button>
+    </div>
+  </div>
+</div>
