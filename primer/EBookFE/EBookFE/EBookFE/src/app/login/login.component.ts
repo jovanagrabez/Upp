@@ -34,10 +34,13 @@ export class LoginComponent implements OnInit {
       userFromToken.token = headers.get('Authorization');
 
       localStorage.setItem('loggedUser', JSON.stringify(userFromToken));
-      console.log(userFromToken.token + 'AAAAAAAAAAAAAAAAAA');
+      localStorage.setItem('ulogovan', JSON.stringify(this.user.username));
 
-      location.reload();
-      this.router.navigate(['/addNewMagazine']);
+      console.log(userFromToken.token + 'AAAAAAAAAAAAAAAAAA');
+      console.log(JSON.stringify(this.user.username) + 'BBBBBBBBBBB');
+
+      //   location.reload();
+      this.router.navigate(['']);
     }, error2 => {
       this.wrongUsernameOrPass = true;
     });

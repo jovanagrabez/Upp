@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../services/users/user.service';
 
+// @ts-ignore
+// @ts-ignore
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -12,26 +14,26 @@ export class UsersComponent implements OnInit {
   private user = JSON.parse(localStorage.getItem('user'));
   private role = localStorage.getItem('role');
 
-  constructor(private userService : UserService) {
+  constructor(private userService: UserService) {
 
-    let x = this.userService.fetchUsers();
+    const x = this.userService.fetchUsers();
     x.subscribe(
       res => {
         console.log(res);
         this.users = res;
       },
       error => {
-        console.log("Ne valja...")
+        console.log('Ne valja...');
       });
    }
 
   ngOnInit() {
   }
 
-  isAdmin(temp_user){
-    if(temp_user.role == "ADMIN"){
-      return true; 
-    }else{
+  isAdmin(temp_user) {
+    if (temp_user.role === 'ADMIN') {
+      return true;
+    } else {
       return false;
     }
   }

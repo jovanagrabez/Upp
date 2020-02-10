@@ -15,6 +15,16 @@ public class FormSubmissionDto implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	public FormSubmissionDto(String fieldId, String fieldValue) {
+		this.fieldId = fieldId;
+		this.fieldValue = fieldValue;
+	}
+
+	public FormSubmissionDto(String fieldId, List<String> fieldListValue) {
+		this.fieldId = fieldId;
+		this.fieldListValue = fieldListValue;
+	}
+
 	public FormSubmissionDto(String fieldId, String fieldValue, List<String> fieldListValue) {
 		super();
 		this.fieldId = fieldId;

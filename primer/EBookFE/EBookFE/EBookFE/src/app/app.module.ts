@@ -25,6 +25,10 @@ import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import { RegisterVerifyComponent } from './register-verify/register-verify.component';
 import { TaskComponent } from './task/task.component';
 import { DodajComponent } from './dodaj/dodaj.component';
+import { CasopisListComponent } from './component/casopis-list/casopis-list.component';
+import { DodavanjeRadaComponent } from './component/dodavanje-rada/dodavanje-rada.component';
+import { TaskoviComponent } from './component/taskovi/taskovi.component';
+import { ProvjeriRadComponent } from './component/provjeri-rad/provjeri-rad.component';
 
 const ChildRoutes =
   [
@@ -58,7 +62,11 @@ const Routes = [
     LoginComponent,
     RegisterVerifyComponent,
     TaskComponent,
-    DodajComponent
+    DodajComponent,
+    CasopisListComponent,
+    DodavanjeRadaComponent,
+    TaskoviComponent,
+    ProvjeriRadComponent
   ],
   imports: [
     BrowserModule,

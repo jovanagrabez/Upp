@@ -53,7 +53,7 @@ public class TokenUtils {
         claims.put("roles", userDetails.getAuthorities());
         return Jwts.builder().setClaims(claims)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRES_IN * 10000))
-                .signWith(SignatureAlgorithm.HS512, SECRET.getBytes("UTF-8")).compact();
+                .signWith(SignatureAlgorithm.HS512, SECRET).compact();
     }
 
 

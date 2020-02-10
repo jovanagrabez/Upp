@@ -6,7 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import root.demo.model.FormSubmissionDto;
+import root.demo.model.User;
 import root.demo.repository.UserRepository;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.List;
+import java.util.Properties;
 
 @Service
 public class MailService implements JavaDelegate {
@@ -22,7 +30,7 @@ public class MailService implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 
-    /*    System.out.println("Sending email...");
+        System.out.println("Sending email...");
         List<FormSubmissionDto> registration = (List<FormSubmissionDto>) execution.getVariable("registration");
         String email = registration.get(4).getFieldValue();
 
@@ -56,7 +64,7 @@ public class MailService implements JavaDelegate {
                 //send message
                 Transport.send(message);
                 System.out.println("message sent successfully");
-            } catch (MessagingException e) {throw new RuntimeException(e);}*/
+            } catch (MessagingException e) {throw new RuntimeException(e);}
         }
 
 

@@ -1,4 +1,4 @@
-INSERT INTO user (name, last_name, email,password, enabled, username, recenzent) VALUES ('Milica','Matic','user@yahoo.com','$2a$10$d2bYEem94Do7dck2CP14M.p4u3r2CPb7Di9uyrkxdDF0ibSbU5Bpy',true, 'user@yahoo.com' , false);
+INSERT INTO user (name, last_name, email,password, enabled, username, recenzent) VALUES ('Milica','Matic','jovana.grabez@gmail.com','$2a$10$d2bYEem94Do7dck2CP14M.p4u3r2CPb7Di9uyrkxdDF0ibSbU5Bpy',true, 'jovana.grabez@gmail.com' , false);
 INSERT INTO user (name, last_name, email,password, enabled, username, recenzent) VALUES ('Milica','Matic','jovana@yahoo.com','$2a$10$d2bYEem94Do7dck2CP14M.p4u3r2CPb7Di9uyrkxdDF0ibSbU5Bpy',true, 'jovana@yahoo.com' , false);
 INSERT INTO user (name, last_name, email,password, enabled, username, recenzent) VALUES ('Milica','Matic','grabez@yahoo.com','$2a$10$d2bYEem94Do7dck2CP14M.p4u3r2CPb7Di9uyrkxdDF0ibSbU5Bpy',true, 'grabez@yahoo.com' , false);
 INSERT INTO user (name, last_name, email,password, enabled, username, recenzent) VALUES ('Milica','Matic','elena@yahoo.com','$2a$10$d2bYEem94Do7dck2CP14M.p4u3r2CPb7Di9uyrkxdDF0ibSbU5Bpy',true, 'elena@yahoo.com' , false);
@@ -23,6 +23,12 @@ insert into naucnaoblast (id, name) values (2,'Hemija');
 insert into naucnaoblast (id, name) values (3,'Medicina');
 insert into naucnaoblast (id, name) values (4,'Biologija');
 insert into naucnaoblast (id, name) values (5,'Elektrotehnika');
+
+
+
+insert into  casopis(payment_method,casopis_id, active_status, cijena, issn, naziv, potrebna_dopuna, process_id, main_editor_id) values(1,1,true,50,'123456','Medicinski casopis',false,'123265',1);
+
+insert into  casopis(payment_method,casopis_id, active_status, cijena, issn, naziv, potrebna_dopuna, process_id, main_editor_id) values(1,2,true,25,'987654','Elektrotehnika danas',false,'123265',1);
 
 
 

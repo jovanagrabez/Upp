@@ -53,6 +53,8 @@ public class AuthenticationController {
 
          // Kreiraj token
          User user = (User) authentication.getPrincipal();
+
+         System.out.println("TOOOKEEEN" + user.getUsername());
          String jwt = tokenUtils.generateToken(user);
          int expiresIn = tokenUtils.getExpiredIn();
 

@@ -9,4 +9,5 @@ import root.demo.model.Casopis;
 public interface CasopisRepository extends JpaRepository<Casopis, Long> {
 
     Casopis findByIssn(String issn);
+    Casopis findByCasopisId(Long id);
 }

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <form  name="loginForm" #f="ngForm" class="form-signin" (ngSubmit)="onSubmit(f.value, f)" ngNativeValidate>
+
+        <div class="form-group" *ngFor="let field of formFields" >
+          <label for={{field.id}}><b>{{field.label}}</b></label>
+
+          <input type="text" name="{{field.id}}"[(ngModel)]="field.value" class="form-control" *ngIf="field.type.name=='string'" >
+          <input type="checkbox" name={{field.id}} [(ngModel)]="nesto" class="form-control" *ngIf="field.type.name=='boolean'">
+          <input type="number" name={{field.id}} ngModel class="form-control" *ngIf="field.type.name=='long'">
+
+        </div>
+
+        <button type="submit"  class="btn btn-secondary pull-right">
+          <i class="fa fa-envelope-o"></i>
+          <span> Submit data</span>
+        </button>
+      </form>
+
+
+
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>

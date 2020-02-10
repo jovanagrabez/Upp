@@ -1,8 +1,10 @@
 <nav class="navbar navbar-light bg-light"> 
   
-  <a class="navbar-brand" [routerLink]="['/registrate']" >Registtruj se</a>
+  <a class="navbar-brand" [routerLink]="['/registrate']" >Registruj se</a>
   <a class="navbar-brand" [routerLink]="['/addNewMagazine']" >Dodaj novi casopis</a>
-  <a class="navbar-brand" [routerLink]="['/tasks']" >Dodjeljeni taskovi</a>
+  <a class="navbar-brand" [routerLink]="['/taskovi']" >Zadaci</a>
+
+  <a class="navbar-brand" *ngIf="getLoggedUserType() === 'USER'" [routerLink]="['/radovi']" >Objavi rad</a>
 
   <a class="navbar-brand" [routerLink]="['/login']" >Prijavi se</a>
 

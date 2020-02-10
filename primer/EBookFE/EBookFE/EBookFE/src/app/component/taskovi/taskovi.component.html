@@ -1,0 +1,16 @@
+<div  id="magazines">
+  <h3>Magazines</h3>
+  <br><br>
+  <div *ngFor="let task of tasks">
+    <div>
+      <div class="list-group-item list-group-item-action flex-column align-items-start">
+        <!--      <span class="mb-1 pull-right">-->
+        <!--        <a ><img src="https://img.icons8.com/carbon-copy/100/000000/delete.png" width="30" height="30" alt=""></a>-->
+        <!--      </span>-->
+        <p>{{task.name}}</p>
+
+        <button  class="btn btn-secondary" (click)="redirectToTask(task['taskId'], task['name'])">Uradi task</button>
+      </div>
+    </div>
+  </div>
+</div>

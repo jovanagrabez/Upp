@@ -39,8 +39,14 @@ export class UserService {
       userRole = '';
     } else {
       for (const role of user.roles) {
-        if (role === 'ADMIN') {
-          userRole = 'ADMIN';
+        if (role === 'AUTHOR') {
+          userRole = 'AUTHOR';
+        } else if (role === 'REVIEWER') {
+          userRole = 'REVIEWER';
+        } else if (role === 'EDITOR') {
+          userRole = 'EDITOR';
+        } else {
+          userRole = 'USER';
         }
       }
     }
@@ -104,5 +110,14 @@ export class UserService {
     return this.httpClient.post('api/welcome/postUrednici/'.concat(taskId), user) as Observable<any>;
 
 
+  }
+
+  getTasks() {
+    return this.httpClient.get('api/users/tasks');
+
+  }
+
+  getTask(taskId) {
+    return this.httpClient.get('api/users/task/'.concat(taskId));
   }
 }

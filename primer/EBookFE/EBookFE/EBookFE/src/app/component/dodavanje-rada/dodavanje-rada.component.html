@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <form  name="loginForm" #f="ngForm" class="form-signin" (ngSubmit)="onSubmit(f.value)" ngNativeValidate>
+
+        <div class="form-group" *ngFor="let field of formFields" >
+          <label for={{field.id}}><b>{{field.label}}</b></label>
+
+          <input type="text" name={{field.id}} ngModel class="form-control" *ngIf="field.type.name=='string'" >
+          <input type="checkbox" name={{field.id}} ngModel class="form-control" *ngIf="field.type.name=='boolean'">
+          <input type="number" name={{field.id}} ngModel class="form-control" *ngIf="field.type.name=='long'">
+          <ng-multiselect-dropdown  *ngIf="field.type.name=='enum'"
+                                    [placeholder]="'Izaberite naucnu oblast'"
+                                    [data]="enumValues"
+                                    [(ngModel)]="selectedItems"
+                                    [settings]="dropdownSettings"
+                                    (onSelect)="onItemSelect($event)"
+                                    (onSelectAll)="onSelectAll($event)"
+                                    name="naucnaOblast"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+
+        <form>
+        <div class="form-group">
+
+
+                    <label>Autori:</label><br/>
+                    <label>Ime:</label>
+                    <input type="text" name="imeAutora" [(ngModel)]="firstname" class="form-control">
+                    <label>Prezime:</label>
+                    <input type="text" name="prezimeAutora" [(ngModel)]="lastname" class="form-control">
+                    <label>Email:</label>
+                    <input type="text" name="email" [(ngModel)]="email" class="form-control">
+                    <label>Grad:</label>
+                    <input type="text" name="city" [(ngModel)]="city" class="form-control">
+                    <label>Drzava:</label>
+                    <input type="text" name="state" [(ngModel)]="state" class="form-control">
+                    <button (click)="addAuthor()" class="btn btn-primary">Dodaj autora</button>
+
+                    <div *ngIf = "autori.length>0">
+                    <label>Dodati autori:</label>
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Ime</th>
+                          <th>Prezime</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let autor of autori; let i = index">
+                          <th scope="row">{{i+1}}</th>
+                          <td>{{autor.firstname}}</td>
+                          <td>{{autor.lastname}}</td>
+
+                             </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+
+        </div>
+
+        <div class="form-group">
+
+                      <label>Odaberite rad:</label>
+                      <input type="file" class="form-control" [(ngModel)]="rad" class="form-control" name="rad" accept="application/pdf" (change)="uploadFile($event)" />
+        </div>
+        </form>
+        <button type="submit"  class="btn btn-secondary pull-right">
+          <i class="fa fa-envelope-o"></i>
+          <span> Submit data</span>
+        </button>
+      </form>
+
+
+
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>

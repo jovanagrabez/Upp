@@ -75,6 +75,20 @@ public class User implements Serializable, UserDetails {
     private List<NaucnaOblast> naucna_oblast;
 
 
+ /*   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }*/
+
     public List<NaucnaOblast> getNaucna_oblast() {
         return naucna_oblast;
     }
@@ -194,11 +208,11 @@ public class User implements Serializable, UserDetails {
         return this.authorities;
     }
 
-    public  List<Authority> getA(){ return this.authorities;}
+ /*   public  List<Authority> getA(){ return this.authorities;}
     public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
     }
-
+*/
     public String getCountry() {
         return country;
     }

@@ -45,8 +45,31 @@ public class Casopis implements Serializable {
     @Column
     private Boolean potrebnaDopuna;
 
+    @Column(name = "payment_method", nullable = false)
+    private PaymentMethod paymentMethod;
+
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "casopis")
+    private List<Rad> radovi;
+
+    public List<Rad> getRadovi() {
+        return radovi;
+    }
+
+    public void setRadovi(List<Rad> radovi) {
+        this.radovi = radovi;
+    }
 
     public Casopis() {
+    }
+
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public User getMainEditor() {

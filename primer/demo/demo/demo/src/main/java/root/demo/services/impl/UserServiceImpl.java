@@ -54,13 +54,13 @@ public class UserServiceImpl implements UserService {
     public List<User> getUrednici(){
         List<User> usersAll = this.userRepository.findAll();
         List<User> urednici = new ArrayList<User>();
-        for(int i=0; i<usersAll.size();i++){
+   /*     for(int i=0; i<usersAll.size();i++){
             for(int j=0; j<usersAll.get(i).getA().size();j++) {
                 if (usersAll.get(i).getA().get(j).getName().equals("UREDNIK")) {
                     urednici.add(usersAll.get(i));
                 }
             }
-        }
+        }*/
         return urednici;
 
     }
@@ -69,13 +69,13 @@ public class UserServiceImpl implements UserService {
     public List<User> getRec(){
         List<User> usersAll = this.userRepository.findAll();
         List<User> urednici = new ArrayList<User>();
-        for(int i=0; i<usersAll.size();i++){
+    /*    for(int i=0; i<usersAll.size();i++){
             for(int j=0; j<usersAll.get(i).getA().size();j++) {
                 if (usersAll.get(i).getA().get(j).getName().equals("RECENZENT")) {
                     urednici.add(usersAll.get(i));
                 }
             }
-        }
+        }*/
         return urednici;
 
     }
