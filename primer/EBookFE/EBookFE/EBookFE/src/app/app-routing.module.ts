@@ -12,6 +12,9 @@ import {CasopisListComponent} from './component/casopis-list/casopis-list.compon
 import {DodavanjeRadaComponent} from './component/dodavanje-rada/dodavanje-rada.component';
 import {TaskoviComponent} from './component/taskovi/taskovi.component';
 import {ProvjeriRadComponent} from './component/provjeri-rad/provjeri-rad.component';
+import {ProvjeriPdfComponent} from './component/provjeri-pdf/provjeri-pdf.component';
+import {PrepravkaPodatakaComponent} from './component/prepravka-podataka/prepravka-podataka.component';
+import {IzborRecenzenataComponent} from './component/izbor-recenzenata/izbor-recenzenata.component';
 
 const appRoutes: Routes = [
 
@@ -23,6 +26,9 @@ const appRoutes: Routes = [
   {path: 'tasks', component: TaskComponent},
   {path: 'taskovi', component: TaskoviComponent},
   {path: 'provjeriRad/:taskId', component: ProvjeriRadComponent},
+  {path: 'provjeriPDF/:taskId', component: ProvjeriPdfComponent},
+  {path: 'prepravka/:taskId', component: PrepravkaPodatakaComponent},
+  {path: 'izbor/:taskId', component: IzborRecenzenataComponent},
 
   {path: 'dodaj/:processInstanceId', component: DodajComponent},
   {path: 'dodajRad/:processInstanceId', component: DodavanjeRadaComponent}

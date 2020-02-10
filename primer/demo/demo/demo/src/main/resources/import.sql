@@ -30,6 +30,7 @@ insert into  casopis(payment_method,casopis_id, active_status, cijena, issn, naz
 
 insert into  casopis(payment_method,casopis_id, active_status, cijena, issn, naziv, potrebna_dopuna, process_id, main_editor_id) values(1,2,true,25,'987654','Elektrotehnika danas',false,'123265',1);
 
+insert into  casopis(payment_method,casopis_id, active_status, cijena, issn, naziv, potrebna_dopuna, process_id, main_editor_id) values(0,3,true,25,'987654','Sa placanjem',false,'123265',1);
 
 
 

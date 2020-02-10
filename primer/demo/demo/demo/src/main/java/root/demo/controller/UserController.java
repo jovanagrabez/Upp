@@ -1,6 +1,7 @@
 package root.demo.controller;
 
 import org.camunda.bpm.engine.FormService;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.form.FormField;
 import org.camunda.bpm.engine.form.TaskFormData;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import root.demo.model.FormFieldsDto;
 import root.demo.model.TaskDto;
 import root.demo.model.User;
+import root.demo.repository.NaucnaOblastRepository;
 import root.demo.security.TokenUtils;
 import root.demo.services.UserService;
 
@@ -37,6 +39,12 @@ public class UserController {
 
     @Autowired
     FormService formService;
+
+    @Autowired
+    private NaucnaOblastRepository naucnaOblastRepository;
+
+    @Autowired
+    RuntimeService runtimeService;
 
     @GetMapping(value = "/{username}")
     public User getUserByUsername(@PathVariable String username) {
@@ -90,6 +98,20 @@ public class UserController {
         List<FormField> properties = tfd.getFormFields();
 
         Task task =  taskService.createTaskQuery().taskId(taskId).singleResult();
+
+  /*      List<NaucnaOblast> naucneOblasti= this.naucnaOblastRepository.findAll();
+
+        for(FormField form: properties){
+            if(form.getId().equals("naucnaOblasti")){
+                EnumFormType enumFormType = (EnumFormType) form.getType();
+                Map<String, String> items = enumFormType.getValues();
+                for(NaucnaOblast naucna: naucneOblasti){
+                    items.put(naucna.getName(),naucna.getName());
+                }
+                runtimeService.setVariable(task.getProcessInstanceId(),"naucnaOblasti", items);
+
+            }
+        }*/
         return new FormFieldsDto(taskId, task.getProcessInstanceId(), properties);
     }
 

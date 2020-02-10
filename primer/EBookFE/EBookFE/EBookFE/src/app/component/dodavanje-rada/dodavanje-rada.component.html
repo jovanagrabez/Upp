@@ -11,7 +11,7 @@
           <input type="checkbox" name={{field.id}} ngModel class="form-control" *ngIf="field.type.name=='boolean'">
           <input type="number" name={{field.id}} ngModel class="form-control" *ngIf="field.type.name=='long'">
           <ng-multiselect-dropdown  *ngIf="field.type.name=='enum'"
-                                    [placeholder]="'Izaberite naucnu oblast'"
+                                    [placeholder]="'Izaberite recezente'"
                                     [data]="enumValues"
                                     [(ngModel)]="selectedItems"
                                     [settings]="dropdownSettings"

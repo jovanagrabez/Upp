@@ -27,7 +27,12 @@ export class TaskoviComponent implements OnInit {
 
     if (taskDefinitionId === 'Pregled rada urednik')
        this.router.navigate(['/provjeriRad', taskId]);
-
+    if (taskDefinitionId === 'Pregled pdf')
+      this.router.navigate(['/provjeriPDF', taskId]);
+    if (taskDefinitionId === 'Prepravka podataka o radu')
+      this.router.navigate(['/prepravka', taskId]);
+    if (taskDefinitionId === 'Izbor recenzenta')
+      this.router.navigate(['/izbor', taskId]);
 
 
   }

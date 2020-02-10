@@ -48,4 +48,19 @@ export class CasopisService {
   completeTask1(taskId, o) {
     return this.httpClient.post('api/casopis/tasks/complete/'.concat(taskId), o);
   }
+
+  getPrepravkaRada(processInstance) {
+    return this.httpClient.get('api/casopis/getPrepravka/'.concat(processInstance));
+
+  }
+
+  getNacin(magazineId: any) {
+    return this.httpClient.get('api/casopis/getNacinPlacanja/'.concat(magazineId));
+
+
+  }
+
+  getForm2(processInstance) {
+    return this.httpClient.get('api/casopis/getForm2/'.concat(processInstance));
+  }
 }

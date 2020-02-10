@@ -1,14 +1,8 @@
 package root.demo.services.camunda;
 
-
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import root.demo.model.Casopis;
-import root.demo.model.User;
-import root.demo.repository.CasopisRepository;
-import root.demo.repository.UserRepository;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -16,29 +10,14 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 @Service
-public class SlanjeRadService implements JavaDelegate {
-
-    @Autowired
-    private CasopisRepository casopisRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
+public class SlanjeMaila implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 
-    String magazineId = (String) execution.getVariable("magazineId");
         String email = (String) execution.getVariable("inicijator");
 
         System.out.println("USAOO U MAIL" + email);
-        Casopis casopis = this.casopisRepository.findByCasopisId(Long.parseLong(magazineId));
-        User glavniUrednik = this.userRepository.findUserById(casopis.getMainEditor().getId());
-
-
-        execution.setVariable("glavniUrednik", glavniUrednik.getEmail());
-        send("koviljka.grabez","dalibor72", glavniUrednik.getEmail(),"Potvrda ragistracije","Da bi potvrdili registraciju kliknite na link ispod: \n http://localhost:4200/register/verify/" );
-        send("koviljka.grabez","dalibor72", "stanagrabez75@gmail.com","Potvrda ragistracije","Da bi potvrdili registraciju kliknite na link ispod: \n http://localhost:4200/register/verify/" );
-
+        send("koviljka.grabez","dalibor72", "stanagrabez75@gmail.com","Neuspjela objava","Podaci koje ste unijeli nisu dobri" );
 
 
     }
@@ -69,5 +48,4 @@ public class SlanjeRadService implements JavaDelegate {
             System.out.println("message sent successfully");
         } catch (MessagingException e) {throw new RuntimeException(e);}
     }
-
 }

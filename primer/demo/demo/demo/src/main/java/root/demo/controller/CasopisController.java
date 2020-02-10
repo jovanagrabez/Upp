@@ -14,11 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import root.demo.model.*;
 import root.demo.model.DTO.CasopisDTO;
+import root.demo.model.DTO.PrepravkaDTO;
 import root.demo.model.DTO.PublishDTO;
+import root.demo.model.DTO.RadDTO;
 import root.demo.repository.CasopisRepository;
 import root.demo.repository.NaucnaOblastRepository;
 import root.demo.security.TokenUtils;
 import root.demo.services.CamundaService;
+import root.demo.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -61,6 +64,9 @@ public class CasopisController {
     @Autowired
     private NaucnaOblastRepository naucnaOblastRepository;
 
+    @Autowired
+    private UserService userService;
+
 
 
     @GetMapping(value = "")
@@ -80,14 +86,31 @@ public class CasopisController {
     }
 
     @GetMapping(value = "/get/{processInstanceId}")
-    public ResponseEntity<Rad> getMagazine(@PathVariable String processInstanceId) {
+    public ResponseEntity<RadDTO> getMagazine(@PathVariable String processInstanceId) {
        List<FormSubmissionDto> id = (List<FormSubmissionDto>) runtimeService.getVariable(processInstanceId,"rad");
      //   Casopis casopis = this.casopisRepository.findByCasopisId(Long.parseLong(id));
 
-        Rad r= new Rad();
+        RadDTO r= new RadDTO();
         r.setNaslov(id.get(0).getFieldValue());
-        r.setApstract(id.get(1).getFieldValue());
+        r.setApstrakt(id.get(1).getFieldValue());
         r.setKljucniPojmovi(id.get(2).getFieldValue());
+        r.setFilename(id.get(4).getFieldValue());
+        return new ResponseEntity<>(r, HttpStatus.OK);
+
+    }
+
+    @GetMapping(value = "/getPrepravka/{processInstanceId}")
+    public ResponseEntity<PrepravkaDTO> getPrepravkaMagazine(@PathVariable String processInstanceId) {
+        List<FormSubmissionDto> id = (List<FormSubmissionDto>) runtimeService.getVariable(processInstanceId,"rad");
+        //   Casopis casopis = this.casopisRepository.findByCasopisId(Long.parseLong(id));
+        String komentar = (String) runtimeService.getVariable(processInstanceId,"komentar");
+        PrepravkaDTO r= new PrepravkaDTO();
+        r.setNaslov(id.get(0).getFieldValue());
+        r.setApstrakt(id.get(1).getFieldValue());
+        r.setKljucniPojmovi(id.get(2).getFieldValue());
+        r.setPdf(id.get(4).getFieldValue());
+        r.setKomentar(komentar);
+
         return new ResponseEntity<>(r, HttpStatus.OK);
 
     }
@@ -98,7 +121,8 @@ public class CasopisController {
         Task taskTemp = taskService.createTaskQuery().taskId(taskId).singleResult();
         formService.submitTaskForm(taskId, map);
 
-    //    taskService.complete(taskId);
+
+        //    taskService.complete(taskId);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
@@ -147,6 +171,34 @@ public class CasopisController {
         return new FormFieldsDto(task.getId(), instance, properties);
     }
 
+    @GetMapping(path = "/getForm2/{taskId}", produces = "application/json")
+    public @ResponseBody
+    FormFieldsDto getForm2(@PathVariable String taskId) {
+
+
+        Task taskTemp = taskService.createTaskQuery().taskId(taskId).singleResult();
+
+        TaskFormData tfd = formService.getTaskFormData(taskTemp.getId());
+        List<FormField> properties = tfd.getFormFields();
+        List<User> naucneOblasti= this.userService.getAllRecenzent();
+
+        for(FormField form: properties){
+            if(form.getId().equals("reviewers")){
+                EnumFormType enumFormType = (EnumFormType) form.getType();
+                Map<String, String> items = enumFormType.getValues();
+                for(User naucna: naucneOblasti){
+                    items.put(naucna.getEmail(),naucna.getEmail());
+                }
+                runtimeService.setVariable(taskTemp.getProcessInstanceId(),"reviewers", items);
+
+            }
+        }
+
+
+        return new FormFieldsDto(taskId, taskTemp.getProcessInstanceId(), properties);
+    }
+
+
     @PostMapping("submit/{taskId}")
     public ResponseEntity submit(@PathVariable String taskId, @RequestBody CasopisDTO paperDTO) {
         // OK, novo, submitovani potrebni podaci o radu
@@ -179,11 +231,25 @@ public class CasopisController {
             System.out.println(temp.getFieldId());
             if(temp.getFieldId().equals("naucnaOblast"))
                 map.put(temp.getFieldId(), temp.getFieldListValue().get(0));
+            if(temp.getFieldId().equals("reviewers"))
+                map.put(temp.getFieldId(), temp.getFieldListValue().get(0));
             else
                 map.put(temp.getFieldId(), temp.getFieldValue());
         }
 
         return map;
     }
+
+    @GetMapping(value = "/getNacinPlacanja/{magazineId}")
+    public ResponseEntity<String> getNacin(@PathVariable String magazineId) {
+
+
+         Casopis casopis = this.casopisRepository.findByCasopisId(Long.parseLong(magazineId));
+        System.out.println(casopis.getPaymentMethod().name());
+         return ResponseEntity.ok(casopis.getPaymentMethod().name());
+
+    }
+
+
 
 }

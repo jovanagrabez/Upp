@@ -29,7 +29,16 @@ export class CasopisListComponent implements OnInit {
 
   dodajRad(magazineId: any) {
    this.casopisService.completeTask(this.taskId, magazineId).subscribe(res => {
+   /*  this.casopisService.getNacin(magazineId).subscribe( rezultat => {
+       if(rezultat === 'OPEN_ACCESS'){
+         this.router.navigate(['']);
+
+       }
+       this.router.navigate(['/dodajRad', this.processInstanceId]);
+     });*/
      this.router.navigate(['/dodajRad', this.processInstanceId]);
+
+
    });
   }
 }

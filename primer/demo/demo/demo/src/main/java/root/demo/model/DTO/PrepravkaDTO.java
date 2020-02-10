@@ -1,20 +1,14 @@
 package root.demo.model.DTO;
 
-public class RadDTO {
+public class PrepravkaDTO {
+
     String naslov;
+    String komentar;
     String apstrakt;
     String kljucniPojmovi;
-    String filename;
+    String pdf;
 
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    public RadDTO() {
+    public PrepravkaDTO() {
     }
 
     public String getNaslov() {
@@ -23,6 +17,14 @@ public class RadDTO {
 
     public void setNaslov(String naslov) {
         this.naslov = naslov;
+    }
+
+    public String getKomentar() {
+        return komentar;
+    }
+
+    public void setKomentar(String komentar) {
+        this.komentar = komentar;
     }
 
     public String getApstrakt() {
@@ -39,5 +41,13 @@ public class RadDTO {
 
     public void setKljucniPojmovi(String kljucniPojmovi) {
         this.kljucniPojmovi = kljucniPojmovi;
+    }
+
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
     }
 }

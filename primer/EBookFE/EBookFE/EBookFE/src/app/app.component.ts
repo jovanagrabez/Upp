@@ -37,8 +37,8 @@ export class AppComponent {
         if (role === 'AUTHOR') {
           userRole = 'AUTHOR';
           console.log('autor' + userRole);
-        } else if (role === 'REVIEWER') {
-          userRole = 'REVIEWER';
+        } else if (role === 'RECENZENT') {
+          userRole = 'RECENZENT';
         } else if (role === 'EDITOR') {
           userRole = 'EDITOR';
         } else {
